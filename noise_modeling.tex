@@ -1,0 +1,141 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{arydshln}
+
+\title{Unbiased Noise Characterization for Geodetic Data}
+\author{Trever T. Hines and Eric A. Hetland}
+\begin{document}
+
+\maketitle
+\section{Introduction}\label{sec:Introduction}
+
+
+The noise in geodetic data, which we consider to be any observed deformation that is not representative of the cohesive crustal block, is temporally correlated. It is necessary to accurately quantify this noise before the data is used to make geophysical inferences. A power-law relationship is often used to described the frequency content of noise in geodetic data \citep{Agnew1992}.  The power spectral density of power-law noise is described as 
+
+\begin{equation}\label{eq.PowerLaw}
+  P(f) = P_o f^{-n}
+\end{equation}
+where $f$ is frequency, $n$ is the spectral index and $P_o$ is the amplitude. Analysis of time series from strain and tilt meters \citep{Wyatt1982,Wyatt1989}, electronic distance measurements \citep{Langbein1997}, and short-baseline GPS \citep{King2009} indicates that temporally correlated noise can be attributed, at least in part, to an unstable geodetic monument. The referenced studies have found that localized motions of the monument can be modeled as a random walk process ($n=2$). Global or regional GPS data, which is prone to additional non-physical sources of error \citep[e.g.][]{King2010}, has been described as a combination of white noise ($n=0$) and flicker noise ($n=1$) \citep{Zhang1997,Mao1999,Williams2004}. \citet{Langbein2008}, who used longer GPS timeseries,  found that GPS data in Southern California and Nevada contains white noise and some combination of flicker noise and random walk noise that varies between stations. It was suggested by \citet{Langbein2008} that random walk noise in GPS data can be attributed to monument instability while flicker noise can be attributed to non-physical errors introduced in deriving the displacement timeseries.  
+
+No single noise model is universally appropriate for geodetic data, and the most rigorous of studies involving geodetic data should estimate a noise model for each station.  \citet{Langbein1997} introduce a maximum likelihood estimation (MLE) method for determining the optimal values for $P_o$ and $n$ (or the hyperparameters for any other assumed model). This method has become the standard technique for characterizing noise in geodetic data \citep{Langbein2004,Langbein2008,Zhang1997,Mao1999,Williams2004,King2009,Murray2017}.  
+
+Recently, \citep{Langbein2012} used synthetic noise consisting of white noise and colored noise to demonstrate that the MLE method is biased towards inferring a small component of colored noise for short timeseries.  This bias is appreciable when the length of the timeseries is less than or comparable to the cross-over period, which is the period at which the power of the colored noise exceeds the power of the white noise. \citet{Langbein2012} argues that the MLE method tends to underestimate the colored noise component because the power spectral density of a short timeseries will not contain any distinguishable component of colored noise. We do not find this to be a satisfactory explanation. If the length of the timeseries is comparable to or less than the cross-over period then we would expect estimated colored noise components to have a high variance but no bias. 
+
+In this paper we explain why the MLE method from \citet{Langbein1997} is biased, and we provide a correction to the MLE method which removes the bias without adding any significant computational burden. 
+
+\section{Unbiased maximum likelihood method}
+
+We assume that a geodetic timeseries with $n$ observations, $\mathbf{d_*}$, is a sample of the random vector
+
+\begin{equation}\label{LangbeinModel}
+  \mathbf{d} = \mathbf{Gm} + \mathbf{\epsilon}
+\end{equation}
+where $\mathbf{\epsilon} \sim \mathcal{N}(0,\mathbf{Cd})$ is the data noise vector, $\mathbf{G}$ is an $n \times m$ matrix of basis function that are used to describe geophysical signal in $\mathbf{d}$ (e.g. secular rates, coseismic offsets, postseismic transience, etc.), and $\mathbf{m}$ is a length $m$ model vector with an uninformed prior (i.e. $\mathbf{m} \sim \mathcal{N}(0,\lambda\mathbf{I})$ in the limit as $\lambda \to \infty$).  We want to characterize the noise $\mathbf{\epsilon}$, and we do so by selecting an appropriate $\mathbf{Cd}$.  The MLE method selects $\mathbf{Cd}$ such that the probability of drawing $\mathbf{d_*}$ from $\mathbf{d}$, $p_\mathbf{d}(\mathbf{d_*})$, is maximized. In order to make this problem tractible, we assume  some form for $\mathbf{Cd}$. For example, if we assume that $\mathbf{\epsilon}$ is a random walk then the components of $\mathbf{C_d}$ will have the form
+
+\begin{equation}\label{RandomWalk}
+  (\mathbf{C_d})_{ij} = \sigma^2\min(t_i,t_j),
+\end{equation}
+which converts the intractible problem of optimizing $\mathbf{C_d}$ into a more tractible problem of optimizing the hyperparameter $\sigma$. 
+
+can be described  components of the covariance matrix can be   if the $\mathbf{d_*}$ was observed at times $\mathbf{t} = {t_1,t2,...,t_n}$, then we can      
+
+The MLE method, 
+
+  f the data which we do not consider to be noise ( which     and its covariance, $Cd$, is what we want to estimate.  
+
+In fact, the bias in the MLE method is well recognized in the Kriging literature \citep[e.g][]{Cressie1992} and the correction that we propose has been known of since the work of \citet{Patterson1971}. Nonetheless, we find         
+
+In this paper we an alternate explanation for the bias in the MLE method and we also     
+
+be high variance in estimated colored noise should have a high variance but not a bias.   and we reasoning can how find this to be a satisfactory explanation for the bais
+
+This is not a satisfying explanation bsatisfactory explanation for the bias, since it only explains why we would expect a high variance in estimated colored noise components.
+
+Rather, this rationale would suggest that estimated components of colored noise would have a high variance not not biased. in 
+
+rather we find it as an explanation    
+
+the power spectral density is dominated by white noise and there will be little evidence for a colored noise component.   \citet{Langbein2012} reasoned that this bias can be noise power spectral density for such a short timeseries is dominated by the white noise, making the colored noise component indistinguishable.  We do not find this explanation to be satifactory. If the absense of evidence for colored noise does not ,  explains why there should be a high variance in the  estimating a smla   
+
+   
+
+would be dominate by the white component  masked by the white component   
+
+The rational being that the frequency content of any colored noise is    white noise power and colored noise 
+
+the time series istowards inferring  baised  the esimates to  showed the MLE method tends to estimate an     
+ for used many studies on noise analysis    
+
+
+  rigorous studies on geodetic  it should be common practice to estimate and optimal noise model.  no clear model which 
+
+In To determine which noise model is most appropriate,     
+
+in  who used longer GPS time series.  \citet{Langbein2008} showed that the amplitude of the power law noise and its spectral index can vary depending on the station location and the how the station was installed. Thus a rigorous study involving geodetic data would require that a noise model be determined for each station.  would    the most rigorous      
+
+The most common approach to techniques for determinng  
+
+
+There is not a generally accepted noise model for geodetic data, and the most rigorous geodetic analysis would require estimating a noise model for each geodetic time series.  
+
+    ,  other tmodeling assumptions made in deriving the displacement time ich can have non-physical sources of error related to modeling assumptions in deriving the d,  be contanimated sources of errors  related to the GPS system,            Studies of geodetic mon  
+
+
+can be derived from the geodetic data can be overly confident \citep[e.g][]{Mao1999}.  can be unduly cbiased  is necessary to accurately quantify this noise using the data to make geophysical inferences 
+
+
+This can be attributed to localized motion of the geodetic monument \citep[e.g.][]{Wyatt1982,Wyatt1989,Agnew1992,King2009}. For GPS data, there are several assumptions and models involved  \citet{Langbeing2008,Langbein2012} has suggested that non-physical, temporally correlated noise could be introduced by errors in deriving the displacement time series.  
+
+It is generally accepted that the frequency content of this noise can be accurately described with a power law relationship.  There is no generally accepted spectral index, since that can vary depending on the location and the type of instrument being used.  For example, short baseline instruments such as BSM or LSM, tend to have a random walk noise, while GPS data, which measures displacements over regional scales, tends to have a flicker noise.  The amplitude of the noise can vary considerably between stations. 
+
+For the most rigorous of analysis, the noise model should be estimated for each station.  \citet{Langbein1997} introduce a maximum likelihood method. THis method works by doing this
+
+Here is the problem with it. It assumes residuals have a noise model. 
+
+THis paper merely reiterates a method which has been around since 1971.  Given the widespead use of Langbeins method, we find it necessary to bring forth this method and demonstrate how it does not bias shit. 
+
+    
+
+  
+
+s tend  borehole strain meters tend to have    
+
+The power law that best describes the geodetic noise can  vary depending on the location of the monument and the geodetic technique. on  by  not The spectral index that best describes the noise varies depending on geodetic technique.  For example, borehole strain meters has a XXX noise, while GPS data tends to be better described by flicker noise \citep{Zhang1997,Mao1999}. There noise also has regional    While there seems to be some consensus on the the spectral index, the amplitude of the noise can vary by station. For example in nevada there is nothing going on.
+
+  
+
+     and the the    ctends to be somewhere between 1 and 2 depending on the location \citep{Langbein2008} , where     \citep{Mao1999}        
+
+By inspecting the frequency content of the noise, researchers have generally  the power spectrum Models   
+
+   could also be the result of errors in the GPS has suggested that non-physical te GPS    
+
+to the  origin, Geodetic data contains temporally correlated noise. and it is necessary to accurately quantify this noise before can be used to draw 
+ 
+Before the data can be used to make inferences about geophysical phenomina, it is necessary to 
+
+If this noise is not accurately quantified, then it can then is  and it is necessary to accurately quantify this noise before the data can be used for geophysical. It is necessary to accurately quantify this noise in order to make 
+
+ \citep{Langbein1997,Zhang1997,Mao1999}. This is often attributed to localized motion of the geodetic monument \citep[e.g][]{Wyatt1982,Wyatt1989,Agnew1992,King2009}. GPS data may suffer from additional, non-physical sources of temporally correlated noise which are introduced in deriving the displacement time series.  
+
+It is important for us to first define what we consider to be noise. We consider noise to be any measured displacements that are localized or seasonal. of displacement that are not representative of the cohesive crust. That is, measurements that are localized.   
+
+As suggested by \citep{Langbein2008,Langbein2012}, some of the temporally correlated noise could be a non-physical result of errors in deriving the GPS time series.  and a the result errors introduced in deriving the GPS processing
+
+some of the temporal correlation could be th and, for GPS data, . and nonphysical errors introduced in deriving the GPS displacement time series.  intrumentation error  correlated noise in geodetic data has been  
+It is now widely recognized that geodetic data contains 
+
+Many people have used the MLE method by Langbein 1997, 
+
+fuck
+\citep{Hines2016}
+
+\bibliographystyle{apalike}
+\bibliography{mybib}  
+
+\end{document}
