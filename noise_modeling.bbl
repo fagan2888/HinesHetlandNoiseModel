@@ -68,6 +68,12 @@ Patterson, H.~D. and Thompson, R. (1971).
 \newblock {Recovery of Inter-Block Information when Block Sizes are Unequal}.
 \newblock {\em Biometrika}, 58(3):545--554.
 
+\bibitem[Wahba, 1985]{Wahba1985}
+Wahba, G. (1985).
+\newblock {A comparison of GCV and GML for choosing the smoothing parameter in
+  the generalized spline smoothing problem}.
+\newblock {\em Annals of Statistics}, 13(4):1378--1402.
+
 \bibitem[Williams et~al., 2004]{Williams2004}
 Williams, S. D.~P., Bock, Y., Fang, P., Jamason, P., Nikolaidis, R.~M.,
   Prawirodirdjo, L., Miller, M., and Johnson, D.~J. (2004).

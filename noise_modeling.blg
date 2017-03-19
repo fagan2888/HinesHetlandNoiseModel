@@ -3,46 +3,47 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: noise_modeling.aux
 The style file: apalike.bst
 Database file #1: mybib.bib
+Warning--I didn't find a database entry for "Rassmussen2006"
 Warning--I didn't find a database entry for "Langbeing2008"
-You've used 16 entries,
+You've used 17 entries,
             1935 wiz_defined-function locations,
-            593 strings with 6338 characters,
-and the built_in function-call counts, 6147 in all, are:
-= -- 611
-> -- 231
-< -- 13
-+ -- 76
-- -- 76
-* -- 545
-:= -- 1085
-add.period$ -- 48
-call.type$ -- 16
-change.case$ -- 118
-chr.to.int$ -- 16
-cite$ -- 16
-duplicate$ -- 221
-empty$ -- 436
-format.name$ -- 104
-if$ -- 1178
+            603 strings with 6542 characters,
+and the built_in function-call counts, 6528 in all, are:
+= -- 651
+> -- 238
+< -- 14
++ -- 78
+- -- 78
+* -- 578
+:= -- 1149
+add.period$ -- 51
+call.type$ -- 17
+change.case$ -- 124
+chr.to.int$ -- 17
+cite$ -- 17
+duplicate$ -- 235
+empty$ -- 468
+format.name$ -- 107
+if$ -- 1253
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 17
-newline$ -- 83
-num.names$ -- 48
-pop$ -- 76
+missing$ -- 18
+newline$ -- 88
+num.names$ -- 51
+pop$ -- 79
 preamble$ -- 1
-purify$ -- 118
+purify$ -- 124
 quote$ -- 0
-skip$ -- 176
+skip$ -- 187
 stack$ -- 0
-substring$ -- 461
-swap$ -- 16
+substring$ -- 504
+swap$ -- 17
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 94
+type$ -- 100
 warning$ -- 0
-while$ -- 55
+while$ -- 59
 width$ -- 0
-write$ -- 211
-(There was 1 warning)
+write$ -- 224
+(There were 2 warnings)

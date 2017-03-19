@@ -24,22 +24,52 @@ where $f$ is frequency, $n$ is the spectral index and $P_o$ is the amplitude. An
 
 No single noise model is universally appropriate for geodetic data, and the most rigorous of studies involving geodetic data should estimate a noise model for each station.  \citet{Langbein1997} introduce a maximum likelihood estimation (MLE) method for determining the optimal values for $P_o$ and $n$ (or the hyperparameters for any other assumed model). This method has become the standard technique for characterizing noise in geodetic data \citep{Langbein2004,Langbein2008,Zhang1997,Mao1999,Williams2004,King2009,Murray2017}.  
 
-Recently, \citep{Langbein2012} used synthetic noise consisting of white noise and colored noise to demonstrate that the MLE method is biased towards inferring a small component of colored noise for short timeseries.  This bias is appreciable when the length of the timeseries is less than or comparable to the cross-over period, which is the period at which the power of the colored noise exceeds the power of the white noise. \citet{Langbein2012} argues that the MLE method tends to underestimate the colored noise component because the power spectral density of a short timeseries will not contain any distinguishable component of colored noise. We do not find this to be a satisfactory explanation. If the length of the timeseries is comparable to or less than the cross-over period then we would expect estimated colored noise components to have a high variance but no bias. 
-
-In this paper we explain why the MLE method from \citet{Langbein1997} is biased, and we provide a correction to the MLE method which removes the bias without adding any significant computational burden. 
+Recently, \citep{Langbein2012} used synthetic noise consisting of white noise and colored noise to demonstrate that the MLE method is biased towards inferring a small component of colored noise for short timeseries.  This bias is appreciable when the length of the timeseries is less than or comparable to the cross-over period, which is the period at which the power of the colored noise exceeds the power of the white noise. \citet{Langbein2012} claims that the MLE method tends to underestimate the colored noise component because the power spectral density of a short timeseries will not contain any distinguishable component of colored noise. We do not find this explanation to be satisfying. If the length of the timeseries is comparable to or less than the cross-over period then we would expect estimated colored noise components to have a high variance but this does not explain why there is a bias. In this paper we explain why the MLE method from \citet{Langbein1997} is biased, and we provide a correction to the MLE method which removes the bias without adding any significant computational burden. 
 
 \section{Unbiased maximum likelihood method}
 
-We assume that a geodetic timeseries with $n$ observations, $\mathbf{d_*}$, is a sample of the random vector
+Let $\mathbf{d_*}$ denote a geodetic timeseries of $n$ observations made at times $\{t_1,t_2,\dots,t_n\}$. We treat $\mathbf{d_*}$ as a realization of the random vector
 
 \begin{equation}\label{LangbeinModel}
-  \mathbf{d} = \mathbf{Gm} + \mathbf{\epsilon}
+  \mathbf{d} = \mathbf{Gm} + \mathbf{\epsilon},
 \end{equation}
-where $\mathbf{\epsilon} \sim \mathcal{N}(0,\mathbf{Cd})$ is the data noise vector, $\mathbf{G}$ is an $n \times m$ matrix of basis function that are used to describe geophysical signal in $\mathbf{d}$ (e.g. secular rates, coseismic offsets, postseismic transience, etc.), and $\mathbf{m}$ is a length $m$ model vector with an uninformed prior (i.e. $\mathbf{m} \sim \mathcal{N}(0,\lambda\mathbf{I})$ in the limit as $\lambda \to \infty$).  We want to characterize the noise $\mathbf{\epsilon}$, and we do so by selecting an appropriate $\mathbf{Cd}$.  The MLE method selects $\mathbf{Cd}$ such that the probability of drawing $\mathbf{d_*}$ from $\mathbf{d}$, $p_\mathbf{d}(\mathbf{d_*})$, is maximized. In order to make this problem tractible, we assume  some form for $\mathbf{Cd}$. For example, if we assume that $\mathbf{\epsilon}$ is a random walk then the components of $\mathbf{C_d}$ will have the form
+where $\mathbf{\epsilon} \sim \mathcal{N}(\mathbf{0},\mathbf{\Sigma})$ is the data noise vector, $\mathbf{G}$ is a matrix of basis function that are used to describe geophysical signal in $\mathbf{d}$ (e.g. secular rates, coseismic offsets, postseismic transience, etc.), and $\mathbf{m}$ is a length $m$ model vector with an uninformed prior (i.e. $\mathbf{m} \sim \mathcal{N}(\mathbf{0},\lambda\mathbf{I})$ in the limit as $\lambda \to \infty$). We want to characterize the noise $\mathbf{\epsilon}$ by selecting an appropriate $\mathbf{\Sigma}$. Ideally, we would selects $\mathbf{\Sigma}$ such that the probability of drawing $\mathbf{d_*}$ from $\mathbf{d}$, $p_\mathbf{d}(\mathbf{d_*})$, is maximized.  However, the uninformed prior on $\mathbf{m}$ makes $\mathbf{d}$ improper and $p_\mathbf{d}$ is zero for all choices of $\mathbf{\Sigma}$. We instead seek an alternate probability density function to maximize. 
+
+The MLE method from \citet{Langbein1997} chooses $\mathbf{\Sigma}$ such that the probability of sampling the least squares residual vector,
+
+\begin{equation}\label{ResidualRealization}
+  \mathbf{r}_* =  \left(\mathbf{I} - \mathbf{G}\left(\mathbf{G}^T\mathbf{\Sigma}^{-1}\mathbf{G}\right)^{-1}\mathbf{G}^T\mathbf{\Sigma}^{-1}\right)\mathbf{d_*},
+\end{equation}  
+from $\mathbf{\epsilon}$ is maximized. The MLE method implicitly assumes that $\mathbf{r}_*$ is a representative sample of $\mathbf{\epsilon}$. This assumption is only valid when $n$ is sufficiently large. To elaborate, we note that $\mathbf{r_*}$ is a sample of the random variable
+
+\begin{equation}\label{ResidualVariable}
+  \mathbf{r} =  \left(\mathbf{I} - \mathbf{G}\left(\mathbf{G}^T\mathbf{\Sigma}^{-1}\mathbf{G}\right)^{-1}\mathbf{G}^T\mathbf{\Sigma}^{-1}\right)\mathbf{d},
+\end{equation}  
+which is distributed as
+\begin{equation}\label{ResidualDistribution}
+  \mathbf{r} \sim \mathcal{N}\left(\mathbf{0},\mathbf{\Sigma} - \mathbf{G}\left(\mathbf{G}^T\mathbf{\Sigma}^{-1}\mathbf{G}\right)^{-1}\mathbf{G}^T\right).
+\end{equation}
+From eq. (\ref{ResidualDistribution}), it is apparent that the covariance of $\mathbf{r}$ will tend toward $\mathbf{\Sigma}$ as $n$ gets larger, and thus we can only assume that $\mathbf{r}_*$ is a representative sample of $\mathbf{\epsilon}$ when $n$ is large. We can also observe from eq. (\ref{ResidualDistribution}) that the variance of $\mathbf{r}$ will always be less than the variance of $\mathbf{\epsilon}$.  We believe this is the reason why the MLE method from \citet{Langbein1997} tends to underestimate the noise in small timeseries.
+
+To overcome this bias, we use an alternative maximum likelihood strategy that was first introduced by \citet{Patterson1971}, and is now widely accepted in the Kriging community as an unbiased method for estimating covariance functions \citep[e.g][]{Cressie1992}. We follow the 
+
+Alternative and equivalent expressions can be found in \citet{Wahba1985,Rassmussen2006}.  
+
+   
+
+PPractically equivalent expressions for the likelihood function 
+
+will be small and this assumption      
+
+where $\hat{m}=$  
+
+In order to make this problem tractible, we assume some functional form for $\mathbf{\Sigma}$. For example, if we assume that $\mathbf{\epsilon}$ is Brownian motion then the components of $\mathbf{\Sigma}$ can be written as
 
 \begin{equation}\label{RandomWalk}
-  (\mathbf{C_d})_{ij} = \sigma^2\min(t_i,t_j),
+  \Sigma_{ij} = \sigma^2\min(t_i,t_j).
 \end{equation}
+
+With this assumption we have converted to 
 which converts the intractible problem of optimizing $\mathbf{C_d}$ into a more tractible problem of optimizing the hyperparameter $\sigma$. 
 
 can be described  components of the covariance matrix can be   if the $\mathbf{d_*}$ was observed at times $\mathbf{t} = {t_1,t2,...,t_n}$, then we can      
