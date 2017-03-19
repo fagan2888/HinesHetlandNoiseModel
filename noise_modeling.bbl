@@ -10,6 +10,12 @@ Cressie, N. (1993).
 \newblock {\em {Statistics for Spatial Data}}.
 \newblock John Wiley {\&} Sons, New York, rev. ed. edition.
 
+\bibitem[Harville, 1974]{Harville1974}
+Harville, D.~A. (1974).
+\newblock {Bayesian Inference for Variance Components Using Only Error
+  Contrasts}.
+\newblock {\em Biometrika}, 61(2):383--385.
+
 \bibitem[Hines and Hetland, 2016]{Hines2016}
 Hines, T.~T. and Hetland, E.~A. (2016).
 \newblock {Rapid and simultaneous estimation of fault slip and heterogeneous

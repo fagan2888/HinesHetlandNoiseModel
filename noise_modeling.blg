@@ -5,45 +5,45 @@ The style file: apalike.bst
 Database file #1: mybib.bib
 Warning--I didn't find a database entry for "Rassmussen2006"
 Warning--I didn't find a database entry for "Langbeing2008"
-You've used 17 entries,
+You've used 18 entries,
             1935 wiz_defined-function locations,
-            603 strings with 6542 characters,
-and the built_in function-call counts, 6528 in all, are:
-= -- 651
-> -- 238
-< -- 14
-+ -- 78
-- -- 78
-* -- 578
-:= -- 1149
-add.period$ -- 51
-call.type$ -- 17
-change.case$ -- 124
-chr.to.int$ -- 17
-cite$ -- 17
-duplicate$ -- 235
-empty$ -- 468
-format.name$ -- 107
-if$ -- 1253
+            610 strings with 6669 characters,
+and the built_in function-call counts, 6891 in all, are:
+= -- 689
+> -- 245
+< -- 15
++ -- 80
+- -- 80
+* -- 609
+:= -- 1211
+add.period$ -- 54
+call.type$ -- 18
+change.case$ -- 130
+chr.to.int$ -- 18
+cite$ -- 18
+duplicate$ -- 249
+empty$ -- 498
+format.name$ -- 110
+if$ -- 1324
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 18
-newline$ -- 88
-num.names$ -- 51
-pop$ -- 79
+missing$ -- 19
+newline$ -- 93
+num.names$ -- 54
+pop$ -- 82
 preamble$ -- 1
-purify$ -- 124
+purify$ -- 130
 quote$ -- 0
-skip$ -- 187
+skip$ -- 198
 stack$ -- 0
-substring$ -- 504
-swap$ -- 17
+substring$ -- 541
+swap$ -- 18
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 100
+type$ -- 106
 warning$ -- 0
-while$ -- 59
+while$ -- 63
 width$ -- 0
-write$ -- 224
+write$ -- 237
 (There were 2 warnings)

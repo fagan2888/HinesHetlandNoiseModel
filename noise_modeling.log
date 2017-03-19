@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.8.22)  18 MAR 2017 22:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.8.22)  19 MAR 2017 17:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -300,26 +300,26 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 
 Package natbib Warning: Citation `Rassmussen2006' on page 2 undefined on input 
-line 56.
+line 63.
 
 [2]
 
 Package natbib Warning: Citation `Langbeing2008' on page 3 undefined on input l
-ine 122.
+ine 129.
 
-(./noise_modeling.bbl [3])
+[3] (./noise_modeling.bbl)
 
 Package natbib Warning: There were undefined citations.
 
 [4] (./noise_modeling.aux) ) 
 Here is how much of TeX's memory you used:
- 3464 strings out of 494910
- 46098 string characters out of 6179836
- 114308 words of memory out of 5000000
- 6706 multiletter control sequences out of 15000+600000
+ 3467 strings out of 494910
+ 46158 string characters out of 6179836
+ 115336 words of memory out of 5000000
+ 6709 multiletter control sequences out of 15000+600000
  12161 words of font info for 47 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 38i,7n,24p,1215b,246s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,7n,24p,1285b,246s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
@@ -333,7 +333,7 @@ fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmti10.pfb>
-Output written on noise_modeling.pdf (4 pages, 155073 bytes).
+Output written on noise_modeling.pdf (4 pages, 158827 bytes).
 PDF statistics:
  69 PDF objects out of 1000 (max. 8388607)
  49 compressed objects within 1 object stream
