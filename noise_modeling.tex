@@ -26,21 +26,35 @@ No single noise model is universally appropriate for geodetic data, and the most
 
 Recently, \citet{Langbein2012} demonstrated with synthetic data consisting of white and colored noise that the ML method is biased towards inferring a small component of colored noise in short timeseries.  The bias is appreciable when the length of the timeseries is less than or comparable to the cross-over period, which is the period at which the power of the colored noise exceeds the power of the white noise. \citet{Langbein2012} claims that the colored noise tends to be underestimated because it is indistinguishable in the power spectra of the data. We do not find this explanation to be satisfying. If the length of the timeseries is comparable to or less than the cross-over period then we would expect the estimated colored noise to have a high variance but this does not explain why there is a bias. In this paper we explain why the ML method from \citet{Langbein1997} is biased, and we provide a correction to the ML method which removes the bias without adding any significant computational burden. 
 
-\section{Unbiased maximum likelihood method}
+\section{Maximum likelihood methods}
 
-Let $\mathbf{d_*}$ denote a geodetic timeseries of $n$ observations made at times $\{t_1,t_2,\dots,t_n\}$. We treat $\mathbf{d_*}$ as a realization of the random vector
+Let $\mathbf{d_*}$ denote a column vector of $n$ observations made at times $\{t_1,t_2,\dots,t_n\}$. We treat $\mathbf{d_*}$ as a realization of the random vector
 
 \begin{equation}\label{LangbeinModel}
   \mathbf{d} = \mathbf{Gm} + \mathbf{\epsilon},
 \end{equation}
-where $\mathbf{\epsilon} \sim \mathcal{N}(\mathbf{0},\mathbf{\Sigma})$ is the data noise vector, $\mathbf{G}$ is a matrix of linearly independent basis functions that are used to describe geophysical signal in $\mathbf{d}$ (e.g. secular rates, coseismic offsets, postseismic transience, etc.), and $\mathbf{m}$ is a length $m < n$ model vector with an uninformed prior (i.e. $\mathbf{m} \sim \mathcal{N}(\mathbf{0},\lambda\mathbf{I})$ in the limit as $\lambda \to \infty$). We want to characterize the noise $\mathbf{\epsilon}$ by selecting an appropriate $\mathbf{\Sigma}$. Ideally, we would selects $\mathbf{\Sigma}$ such that the probability of drawing $\mathbf{d_*}$ from $\mathbf{d}$, $p_\mathbf{d}(\mathbf{d_*})$, is maximized.  However, the uninformed prior on $\mathbf{m}$ makes $\mathbf{d}$ improper and $p_\mathbf{d}$ is zero for all choices of $\mathbf{\Sigma}$. We instead seek an alternate probability density function to maximize. 
+where $\mathbf{\epsilon}$ is the data noise vector, $\mathbf{G}$ is a $n \times m$ matrix with linearly independent columns that are used to describe geophysical signal in $\mathbf{d}$ (e.g. secular rates, coseismic offsets, postseismic transience, etc.), and $\mathbf{m}$ is a column vector of $m$ model parameters which have uninformative priors (i.e. $\mathbf{m} \sim \mathcal{N}(\mathbf{0},\lambda\mathbf{I})$ in the limit as $\lambda \to \infty$).  We assume that the data noise can be described as $\mathbf{\epsilon} \sim \mathcal{N}(\mathbf{0},\mathbf{\Sigma}(\mathbf{\theta}))$, where $\mathbf{\theta}$ are the hyperparameters which we want to find appropriate values for. Ideally, we would selects $\mathbf{\theta}$ such that the probability of drawing $\mathbf{d_*}$ from $\mathbf{d}$, $p_\mathbf{d}(\mathbf{d_*}|\mathbf{\theta})$, is maximized. However, the uninformed prior on $\mathbf{m}$ makes $\mathbf{d}$ improper and $p_\mathbf{d}$ is zero for all choices of $\mathbf{\theta}$. We must instead seek an alternative likelihood function to maximize. 
 
-The ML method from \citet{Langbein1997} chooses $\mathbf{\Sigma}$ such that the probability of sampling the least squares residual vector,
+The ML method from \citet{Langbein1997} chooses $\mathbf{\theta}$ such that the probability of sampling the least squares residual vector,
 
 \begin{equation}\label{ResidualRealization}
   \mathbf{r}_* =  \left(\mathbf{I} - \mathbf{G}\left(\mathbf{G}^T\mathbf{\Sigma}^{-1}\mathbf{G}\right)^{-1}\mathbf{G}^T\mathbf{\Sigma}^{-1}\right)\mathbf{d_*},
 \end{equation}  
-from $\mathbf{\epsilon}$ is maximized. The ML method implicitly assumes that $\mathbf{r}_*$ is a representative sample of $\mathbf{\epsilon}$. This assumption is only valid when $n$ is sufficiently large. To elaborate, we note that $\mathbf{r_*}$ is a sample of the random variable
+from $\mathbf{\epsilon}$ is maximized. To put it explicitly, The ML method maximizes the probability density function
+
+\begin{equation}\label{MLProb}
+p_\mathbf{\epsilon}(\mathbf{r}_*|\mathbf{\theta}) = 
+\left(\frac{1}{(2\pi)^n\left| \mathbf{\Sigma}(\mathbf{\theta}) \right|}\right)^{\frac{1}{2}} 
+e^{-\tfrac{1}{2}\mathbf{d}_*^T\mathbf{K(\mathbf{\theta}})\mathbf{d}_*}
+\end{equation}
+with respect to $\mathbf{\theta}$, where
+\begin{equation}
+\mathbf{K} = \mathbf{\Sigma}(\mathbf{\theta})^{-1} - 
+             \mathbf{\Sigma}(\mathbf{\theta})^{-1}\mathbf{G}
+             \left(\mathbf{G}^T\mathbf{\Sigma}(\mathbf{\theta})^{-1}\mathbf{G}\right)^{-1}
+             \mathbf{G}^T\mathbf{\Sigma}(\mathbf{\theta})^{-1}.
+\end{equation}
+The ML method implicitly assumes that $\mathbf{r}_*$ is a representative sample of $\mathbf{\epsilon}$. This assumption is only valid when $n$ is sufficiently large. To elaborate, we note that $\mathbf{r_*}$ is a sample of the random variable
 
 \begin{equation}\label{ResidualVariable}
   \mathbf{r} =  \left(\mathbf{I} - \mathbf{G}\left(\mathbf{G}^T\mathbf{\Sigma}^{-1}\mathbf{G}\right)^{-1}\mathbf{G}^T\mathbf{\Sigma}^{-1}\right)\mathbf{d},
@@ -51,30 +65,66 @@ which is distributed as
 \end{equation}
 The term being subtracted in eq. (\ref{ResidualDistribution}) is the covariance of the least squares prediction vector, which will typically get smaller as $n$ increases. The distribution of $\mathbf{r}$ will then tend towards that of $\mathbf{\epsilon}$ as $n$ increases. Thus we can only assume that $\mathbf{r}_*$ is a representative sample of $\mathbf{\epsilon}$ when $n$ is sufficiently large. We can also observe from eq. (\ref{ResidualDistribution}) that the variance of $\mathbf{r}$ will always be less than the variance of $\mathbf{\epsilon}$.  We believe this is the reason why the ML method from \citet{Langbein1997} is biased towards underestimating the noise in short timeseries.
 
-To overcome this bias, we use the restricted maximum likelihood (REML) method which was introduced by \citet{Patterson1971} and is now accepted in the Kriging literature as an unbiased method for estimating covariance functions \citep[e.g.][]{Cressie1992}. The REML method can be understood by first considering a $(n-m)\times n$ matrix $\mathbf{R}$ which has the properties $\mathbf{R}\mathbf{R}^T = \mathbf{I}$ and $\mathbf{R}\mathbf{G}=\mathbf{0}$.  We then consider the random variable $\mathbf{x}=\mathbf{R}\mathbf{d}$, which can be interpreted as the projection of $\mathbf{d}$ onto a subspace that is orthogonal to the columns of $\mathbf{G}$. As opposed to $\mathbf{d}$, $\mathbf{x}$ is a proper random variable since it is independent of the prior on $\mathbf{m}$. The REML method chooses $\mathbf{\Sigma}$ such that the probability of drawing $\mathbf{R}\mathbf{d}_*$ from $\mathbf{x}$ is maximized. Following \citet{Harville1974}, who notes that the optimal $\mathbf{\Sigma}$ is independant of the particular choice of $\mathbf{R}$, we conveniently choose $\mathbf{R}$ to also satisfy $\mathbf{R}^T\mathbf{R} = \mathbf{I} - \mathbf{G}(\mathbf{G}^T\mathbf{G})^{-1}\mathbf{G}^T$. We can then write $p_\mathbf{x}(\mathbf{R}\mathbf{d}_*)$ as
+Having demonstrated that the ML method from \citet{Langbein1997} is biased, we move on to discuss the restricted maximum likelihood (REML) method for selecting $\mathbf{\theta}$.  The REML method was introduced by \citet{Patterson1971} and is now accepted in the Kriging literature as an unbiased method for estimating covariance functions \citep[e.g.][]{Cressie1992}. The REML method can be understood by first considering a $(n-m)\times n$ matrix $\mathbf{R}$ which has the properties $\mathbf{R}\mathbf{R}^T = \mathbf{I}$ and $\mathbf{R}\mathbf{G}=\mathbf{0}$.  We then consider the random variable $\mathbf{x}=\mathbf{R}\mathbf{d}$, which can be interpreted as the projection of $\mathbf{d}$ onto a subspace that is orthogonal to the columns of $\mathbf{G}$. As opposed to $\mathbf{d}$, $\mathbf{x}$ is a proper random variable since it is independent of the prior on $\mathbf{m}$. The REML method chooses $\mathbf{\theta}$ such that the probability of drawing $\mathbf{x}_*=\mathbf{R}\mathbf{d}_*$ from $\mathbf{x}$, $p_\mathbf{x}(\mathbf{x}_*|\mathbf{\theta})$, is maximized. As noted by \citet{Harville1974}, the particular choice for $\mathbf{R}$ does not matter because it will only change the likelihood function which we are maximizing by a scale factor. Following \citet{Harville1974}, we then conveniently choose $\mathbf{R}$ to satisfy $\mathbf{R}^T\mathbf{R} = \mathbf{I} - \mathbf{G}(\mathbf{G}^T\mathbf{G})^{-1}\mathbf{G}^T$.  The probability density function for $\mathbf{x}$ can then be written as 
+
+\begin{equation}\label{REMLProb}
+p_\mathbf{x}(\mathbf{x}_*|\mathbf{\theta}) =
+\left(\frac{\left|\mathbf{G}^T\mathbf{G}\right|}
+           {(2\pi)^{n-m}
+            \left| \mathbf{\Sigma}(\mathbf{\theta}) \right| 
+            \left| \mathbf{G}^T\mathbf{\Sigma}(\mathbf{\theta})^{-1}\mathbf{G} \right|}\right)^{\frac{1}{2}} 
+e^{-\tfrac{1}{2}\mathbf{d}_*^T\mathbf{K}(\mathbf{\theta})\mathbf{d}_*} .
+\end{equation}
+
+Note the similarity between eq. (\ref{REMLProb}) and eq. (\ref{MLProb}). If programmed efficiently (see Appendix A) and if $m \ll n$, the computational cost of the REML method is practically equivalent to that of the ML method from \citet{Langbein1997}. What remains to be determined is whether the REML method remediates the bias in the ML method. We demonstrate that this is indeed the case with a numerical test. 
+
+\section{Synthetic demonstration}
+We compare the REML method and the ML method from \citet{Langbein1997} by using the two methods to estimate the hyperparameters from snythetic data. This demonstration is modeled after the demonstration from \citet{Langbein2012} which highlights bias in the ML method. Our synthetic noise is a combination of white and random walk noise, which has a power spectral density described by
+
+\begin{equation}\label{SyntheticFreq}
+P(f) = \frac{\sigma_{rw}^2}{2\pi^2 f^2} + 2\sigma_w^2\Delta t,
+\end{equation}  
+where $\sigma_{rw}$ and $\sigma_w$ are hyperparameters for the random walk and white noise components, respectively. $\Delta t$ is the sampling period, which is set at one day. The cross-over frequency for the synthetic noise noise is then
+\begin{equation}\label{Crossover}
+f_o = \frac{1}{2\pi\sqrt{\Delta t}}\frac{\sigma_{rw}}{\sigma_w}.  
+\end{equation}
+In order to use the ML or REML method, we must express the power-law relationship in the frequency domain as a covariance matrix in the time domain. A general procedure for doing  so can be found in \citet{Langbein2004}. The components of the covariance matrix corresponding to eq. (\ref{SyntheticFreq}) can be concisely written as
+
+\begin{equation}\label{Covariance}
+\Sigma_{ij} = \sigma_{rw}^2 \min(i\Delta t,j\Delta t) + \sigma_w^2 \delta_{ij},
+\end{equation} 
+where $\delta_{ij}$ is the Kronecker delta function. Similar to \citet{Langbein2012}, we set $\sigma_{rw} = 1.3$ mm/yr$^{0.5}$ and $\sigma_w = 1.1$ mm. We generate 10,000 synthetic noise timeseries, which each have a length of 2.5 yr. 
+
+We consider $\sigma_w$ to be known, for the sake of simplicity, and we just want to estimate $\sigma_{rw}$ from the synthetic data. While our synthetic data just consists of noise, we assume that the unknown underlying geophysical signal (i.e. $\mathbf{G}\mathbf{m}$) consists of a constant and linear trend. We estimates $\sigma_{rw}$ with the ML and REML methods using varying lengths of the synthetic timeseries. The timeseries lengths range from 0.1 yr to 2.5 yr at 0.1 yr increments. The distribution of estimated $\sigma_{rw}$ is shown in Figure \ref{fig:EstimateRW}.     
+
+\begin{figure}
+\includegraphics[scale=1.0]{figure_1.png}
+\caption{Comparison of ML and REML method over varying lengths of the synthetic timeseries. The black line indicates the true random walk scale ($\sigma_{rw}=1.3$), the light blue region shows the 10-90 percentile of estimates, the dark blue region shows the 30-70 percentile of estimates, the solid blue line indicates the median, and the dashed blue line indicates the mean. Note that $f_o^{-1} \approx 0.3$.}   
+\label{fig:EstimateRW}
+\end{figure}
 
 
 
-of particular choice of $\mathbf{R}$ will not affect the   does not For the purpose of optimizing $\mathbf{Sigma}$, the choice of $\mathbf{R}$ does not matter because It was shown in \citet{Harville1974} that the choice of $\mathbf{R}$ does not matter because the probability density function will only change by a scale factor. The particular choice of $\mathbf{R}$ does not matter since $p_\mathbf{x}(\mathbf{R}\mathbf{d}_*)$ will   
-        
+We use the ML and REML methods to estimate $\sigma_{rw}$, and we vary the portion of the .    
+considered known, we assume that the white noise component We then use the ML method and the REML method to estimate   
 
-We follow the 
+  
 
-Alternative and equivalent expressions can be found in \citet{Wahba1985,Rassmussen2006}.  
+, which corresponds to $f_o^{-1} \approx 0.3$ yr.
 
-   
+We compare the two  remains to be determined is whether the REML metho
 
-PPractically equivalent expressions for the likelihood function 
 
-will be small and this assumption      
+We disagree with the heuristic that the length of the timeseries sould be ~5 times larger than the cutoff period.
 
-where $\hat{m}=$  
-
+virtually equivalent to for will both equations can be evaluated with essentially equivalent computation cost. valuating the two expressions use 
 In order to make this problem tractible, we assume some functional form for $\mathbf{\Sigma}$. For example, if we assume that $\mathbf{\epsilon}$ is Brownian motion then the components of $\mathbf{\Sigma}$ can be written as
 
 \begin{equation}\label{RandomWalk}
   \Sigma_{ij} = \sigma^2\min(t_i,t_j).
 \end{equation}
+
+Not
 
 With this assumption we have converted to 
 which converts the intractible problem of optimizing $\mathbf{C_d}$ into a more tractible problem of optimizing the hyperparameter $\sigma$. 
