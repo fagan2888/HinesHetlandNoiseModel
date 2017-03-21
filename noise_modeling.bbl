@@ -16,12 +16,6 @@ Harville, D.~A. (1974).
   Contrasts}.
 \newblock {\em Biometrika}, 61(2):383--385.
 
-\bibitem[Hines and Hetland, 2016]{Hines2016}
-Hines, T.~T. and Hetland, E.~A. (2016).
-\newblock {Rapid and simultaneous estimation of fault slip and heterogeneous
-  lithospheric viscosity from post-seismic deformation}.
-\newblock {\em Geophysical Journal International}, 204(1):569--582.
-
 \bibitem[King and Watson, 2010]{King2010}
 King, M.~A. and Watson, C.~S. (2010).
 \newblock {Long GPS coordinate time series: Multipath and geometry effects}.
@@ -73,6 +67,12 @@ Murray, J.~R. and Svarc, J. (2017).
 Patterson, H.~D. and Thompson, R. (1971).
 \newblock {Recovery of Inter-Block Information when Block Sizes are Unequal}.
 \newblock {\em Biometrika}, 58(3):545--554.
+
+\bibitem[Wahba, 1985]{Wahba1985}
+Wahba, G. (1985).
+\newblock {A comparison of GCV and GML for choosing the smoothing parameter in
+  the generalized spline smoothing problem}.
+\newblock {\em Annals of Statistics}, 13(4):1378--1402.
 
 \bibitem[Williams et~al., 2004]{Williams2004}
 Williams, S. D.~P., Bock, Y., Fang, P., Jamason, P., Nikolaidis, R.~M.,

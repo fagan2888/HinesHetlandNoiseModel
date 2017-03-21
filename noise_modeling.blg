@@ -3,39 +3,38 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: noise_modeling.aux
 The style file: apalike.bst
 Database file #1: mybib.bib
-Warning--I didn't find a database entry for "Langbeing2008"
 You've used 17 entries,
             1935 wiz_defined-function locations,
-            600 strings with 6465 characters,
-and the built_in function-call counts, 6510 in all, are:
-= -- 649
-> -- 238
+            598 strings with 6398 characters,
+and the built_in function-call counts, 6487 in all, are:
+= -- 647
+> -- 232
 < -- 14
-+ -- 78
-- -- 78
-* -- 576
-:= -- 1147
++ -- 76
+- -- 76
+* -- 572
+:= -- 1143
 add.period$ -- 51
 call.type$ -- 17
-change.case$ -- 124
+change.case$ -- 123
 chr.to.int$ -- 17
 cite$ -- 17
 duplicate$ -- 235
-empty$ -- 466
-format.name$ -- 107
-if$ -- 1249
+empty$ -- 468
+format.name$ -- 103
+if$ -- 1245
 int.to.chr$ -- 1
 int.to.str$ -- 0
 missing$ -- 18
 newline$ -- 88
 num.names$ -- 51
-pop$ -- 79
+pop$ -- 78
 preamble$ -- 1
-purify$ -- 124
+purify$ -- 123
 quote$ -- 0
 skip$ -- 187
 stack$ -- 0
-substring$ -- 498
+substring$ -- 504
 swap$ -- 17
 text.length$ -- 0
 text.prefix$ -- 0
@@ -45,4 +44,3 @@ warning$ -- 0
 while$ -- 59
 width$ -- 0
 write$ -- 224
-(There was 1 warning)
