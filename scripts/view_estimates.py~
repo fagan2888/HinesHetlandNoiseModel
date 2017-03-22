@@ -7,11 +7,13 @@ fig,axs = plt.subplots(2,1)
 ax = axs[0]
 dat = np.loadtxt('ml_estimates.txt',skiprows=1)
 periods = dat[:,0]
-means = dat[:,1]
-percs = dat[:,2:]
+idx = np.argsort(periods)
+periods = periods[idx]
+means = dat[idx,1]
+percs = dat[idx,2:]
 p10 = percs[:,2]
 p30 = percs[:,6]
-p50 = percs[:,10]
+medians = percs[:,10]
 p70 = percs[:,14]
 p90 = percs[:,18]
 
@@ -36,11 +38,13 @@ ax = axs[1]
 
 dat = np.loadtxt('reml_estimates.txt',skiprows=1)
 periods = dat[:,0]
-means = dat[:,1]
-percs = dat[:,2:]
+idx = np.argsort(periods)
+periods = periods[idx]
+means = dat[idx,1]
+percs = dat[idx,2:]
 p10 = percs[:,2]
 p30 = percs[:,6]
-p50 = percs[:,10]
+medians = percs[:,10]
 p70 = percs[:,14]
 p90 = percs[:,18]
 

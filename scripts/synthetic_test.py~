@@ -159,7 +159,7 @@ fig.tight_layout()
 plt.show()
 
 # generate data sets
-data_sets = [noise_true.draw_sample(time[:,None]) for i in range(10)]
+data_sets = [noise_true.draw_sample(time[:,None]) for i in range(100)]
 ml_file = open('ml_estimates.txt','w')
 ml_file.write('timeseries-length mean %s\n' % ' '.join(np.arange(0,105,5).astype(str)))
 ml_file.flush()
@@ -187,7 +187,7 @@ def estimate_scales(tslength):
   P      = gppoly(1).basis(time[idx,None])
   COV_RW = gpbrown(1.0).covariance(time[idx,None],time[idx,None])
   COV_W  = np.eye(sum(idx))
-  for i,data in enumerate(data_sets):
+  for data in data_sets:
     ans = fmin_pos(ml_objective,[1.0],args=(data[idx],COV_RW,COV_W,P),disp=False) 
     ml_solns += [ans[0]]
     ans = fmin_pos(reml_objective,[1.0],args=(data[idx],COV_RW,COV_W,P),disp=False) 
