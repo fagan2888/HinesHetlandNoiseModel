@@ -11,7 +11,7 @@ from scipy.signal import periodogram
 from scipy.optimize import fmin
 import time as timemod
 from pygeons.mp import parmap
-np.random.seed(0)
+np.random.seed(1)
 
 def fmin_pos(func,x0,*args,**kwargs):
   '''fmin with positivity constraint'''
@@ -159,7 +159,7 @@ fig.tight_layout()
 plt.show()
 
 # generate data sets
-data_sets = [noise_true.draw_sample(time[:,None]) for i in range(100)]
+data_sets = [noise_true.draw_sample(time[:,None]) for i in range(5000)]
 ml_file = open('ml_estimates.txt','w')
 ml_file.write('timeseries-length mean %s\n' % ' '.join(np.arange(0,105,5).astype(str)))
 ml_file.flush()
@@ -186,7 +186,7 @@ def estimate_scales(tslength):
 
   P      = gppoly(1).basis(time[idx,None])
   COV_RW = gpbrown(1.0).covariance(time[idx,None],time[idx,None])
-  COV_W  = np.eye(sum(idx))
+  COV_W  = gpexp((0.0,1.0,1e-10)).covariance(time[idx,None],time[idx,None]) 
   for data in data_sets:
     ans = fmin_pos(ml_objective,[1.0],args=(data[idx],COV_RW,COV_W,P),disp=False) 
     ml_solns += [ans[0]]
