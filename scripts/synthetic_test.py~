@@ -138,37 +138,41 @@ freq,pow = periodogram(sample,1.0/dt)
 freq,pow = freq[1:],pow[1:]
 pow_true = rw_scale**2/(2*np.pi**2*freq**2) + 2*w_scale**2*dt
 
-fig,axs = plt.subplots(2,1)
-axs[0].plot(time,mu,color='k',zorder=2,label='expected')
-axs[0].fill_between(time,mu-sigma,mu+sigma,color='k',alpha=0.2,zorder=0,label='std. dev.')
-axs[0].grid(ls=':',c='0.5')
-axs[0].plot(time,sample,color='C0',zorder=1,lw=1.0,label='sample')
-axs[0].set_xlim((time.min(),time.max()))
-axs[0].set_xlabel('time [yr]')
-axs[0].set_ylabel('displacement [mm]')
-axs[0].legend()
-
-axs[1].set_xlim((freq.min(),freq.max()))
-axs[1].loglog(freq,pow,color='C0',label='sample',lw=1.0,zorder=1)
-axs[1].loglog(freq,pow_true,color='k',label='expected',zorder=2)
-axs[1].grid(ls=':',c='0.5')
-axs[1].set_xlabel('frequency [1/yr]')
-axs[1].set_ylabel('power density [$\mathregular{mm^2 \cdot yr}$]')
-axs[1].legend()
-fig.tight_layout()
-plt.show()
+#fig,axs = plt.subplots(2,1)
+#axs[0].plot(time,mu,color='k',zorder=2,label='expected')
+#axs[0].fill_between(time,mu-sigma,mu+sigma,color='k',alpha=0.2,zorder=0,label='std. dev.')
+#axs[0].grid(ls=':',c='0.5')
+#axs[0].plot(time,sample,color='C0',zorder=1,lw=1.0,label='sample')
+#axs[0].set_xlim((time.min(),time.max()))
+#axs[0].set_xlabel('time [yr]')
+#axs[0].set_ylabel('displacement [mm]')
+#axs[0].legend()
+#
+#axs[1].set_xlim((freq.min(),freq.max()))
+#axs[1].loglog(freq,pow,color='C0',label='sample',lw=1.0,zorder=1)
+#axs[1].loglog(freq,pow_true,color='k',label='expected',zorder=2)
+#axs[1].grid(ls=':',c='0.5')
+#axs[1].set_xlabel('frequency [1/yr]')
+#axs[1].set_ylabel('power density [$\mathregular{mm^2 \cdot yr}$]')
+#axs[1].legend()
+#fig.tight_layout()
+#plt.show()
 
 # generate data sets
 data_sets = [noise_true.draw_sample(time[:,None]) for i in range(5000)]
-ml_file = open('ml_estimates.txt','w')
-ml_file.write('timeseries-length mean %s\n' % ' '.join(np.arange(0,105,5).astype(str)))
-ml_file.flush()
-reml_file = open('reml_estimates.txt','w')
-reml_file.write('timeseries-length mean %s\n' % ' '.join(np.arange(0,105,5).astype(str)))
-reml_file.flush()
+#ml_file = open('ml_estimates.txt','w')
+#ml_file.write('timeseries-length mean %s\n' % ' '.join(np.arange(0,105,5).astype(str)))
+#ml_file.flush()
+#reml_file = open('reml_estimates.txt','w')
+#reml_file.write('timeseries-length mean %s\n' % ' '.join(np.arange(0,105,5).astype(str)))
+#reml_file.flush()
+# XXXXXXXXXXXXXXX
+ml_file = open('ml_estimates.txt','a')
+reml_file = open('reml_estimates.txt','a')
+# XXXXXXXXXXXXXXX
 
 def estimate_scales(tslength):
-  print('estimating random walk scale for timeseries length %s' % tslength)
+  #print('estimating random walk scale for timeseries length %s' % tslength)
   def ml_objective(theta,d,cov_rw,cov_w,p):
     cov = theta**2*cov_rw + w_scale**2*cov_w
     mu = np.zeros(d.shape[0])
@@ -206,8 +210,8 @@ def estimate_scales(tslength):
   reml_file.write(entry)
   reml_file.flush()
 
-tslengths = np.arange(0.1,2.6,0.1)
-parmap(estimate_scales,tslengths)
+tslengths = np.arange(2.1,2.6,0.1)
+parmap(estimate_scales,tslengths,workers=4)
 ml_file.close()
 reml_file.close()
     
