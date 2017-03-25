@@ -3,44 +3,46 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: noise_modeling.aux
 The style file: apalike.bst
 Database file #1: mybib.bib
-You've used 17 entries,
+Warning--can't use both volume and number fields in Press2007
+You've used 18 entries,
             1935 wiz_defined-function locations,
-            598 strings with 6398 characters,
-and the built_in function-call counts, 6487 in all, are:
-= -- 647
-> -- 232
-< -- 14
-+ -- 76
-- -- 76
-* -- 572
-:= -- 1143
-add.period$ -- 51
-call.type$ -- 17
-change.case$ -- 123
-chr.to.int$ -- 17
-cite$ -- 17
-duplicate$ -- 235
-empty$ -- 468
-format.name$ -- 103
-if$ -- 1245
+            607 strings with 6610 characters,
+and the built_in function-call counts, 6887 in all, are:
+= -- 683
+> -- 255
+< -- 15
++ -- 84
+- -- 84
+* -- 612
+:= -- 1215
+add.period$ -- 54
+call.type$ -- 18
+change.case$ -- 132
+chr.to.int$ -- 18
+cite$ -- 19
+duplicate$ -- 249
+empty$ -- 491
+format.name$ -- 112
+if$ -- 1320
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 18
-newline$ -- 88
-num.names$ -- 51
-pop$ -- 78
+missing$ -- 20
+newline$ -- 93
+num.names$ -- 54
+pop$ -- 86
 preamble$ -- 1
-purify$ -- 123
+purify$ -- 132
 quote$ -- 0
-skip$ -- 187
+skip$ -- 197
 stack$ -- 0
-substring$ -- 504
-swap$ -- 17
-text.length$ -- 0
+substring$ -- 516
+swap$ -- 20
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 100
-warning$ -- 0
-while$ -- 59
+type$ -- 104
+warning$ -- 1
+while$ -- 61
 width$ -- 0
-write$ -- 224
+write$ -- 239
+(There was 1 warning)

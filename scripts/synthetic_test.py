@@ -160,16 +160,12 @@ pow_true = rw_scale**2/(2*np.pi**2*freq**2) + 2*w_scale**2*dt
 
 # generate data sets
 data_sets = [noise_true.draw_sample(time[:,None]) for i in range(5000)]
-#ml_file = open('ml_estimates.txt','w')
-#ml_file.write('timeseries-length mean %s\n' % ' '.join(np.arange(0,105,5).astype(str)))
-#ml_file.flush()
-#reml_file = open('reml_estimates.txt','w')
-#reml_file.write('timeseries-length mean %s\n' % ' '.join(np.arange(0,105,5).astype(str)))
-#reml_file.flush()
-# XXXXXXXXXXXXXXX
-ml_file = open('ml_estimates.txt','a')
-reml_file = open('reml_estimates.txt','a')
-# XXXXXXXXXXXXXXX
+ml_file = open('ml_estimates.txt','w')
+ml_file.write('timeseries-length mean %s\n' % ' '.join(np.arange(0,105,5).astype(str)))
+ml_file.flush()
+reml_file = open('reml_estimates.txt','w')
+reml_file.write('timeseries-length mean %s\n' % ' '.join(np.arange(0,105,5).astype(str)))
+reml_file.flush()
 
 def estimate_scales(tslength):
   #print('estimating random walk scale for timeseries length %s' % tslength)
@@ -210,7 +206,7 @@ def estimate_scales(tslength):
   reml_file.write(entry)
   reml_file.flush()
 
-tslengths = np.arange(2.1,2.6,0.1)
+tslengths = np.arange(0.1,2.6,0.1)
 parmap(estimate_scales,tslengths,workers=4)
 ml_file.close()
 reml_file.close()
