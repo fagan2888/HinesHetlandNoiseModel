@@ -5,10 +5,22 @@ Agnew, D.~C. (1992).
 \newblock {The time-domain behavior of power-law noises}.
 \newblock {\em Geophysical Research Letters}, 19.
 
+\bibitem[Amiri-Simkooei et~al., 2007]{Amiri-Simkooei2007}
+Amiri-Simkooei, A.~R., Tiberius, C. C. J.~M., and Teunissen, P. J.~G. (2007).
+\newblock {Assessment of noise in GPS coordinate time series: Methodology and
+  results}.
+\newblock {\em Journal of Geophysical Research: Solid Earth}, 112(7):1--19.
+
 \bibitem[Cressie, 1993]{Cressie1992}
 Cressie, N. (1993).
 \newblock {\em {Statistics for Spatial Data}}.
 \newblock John Wiley {\&} Sons, New York, rev. ed. edition.
+
+\bibitem[Dmitrieva et~al., 2015]{Dmitrieva2015}
+Dmitrieva, K., Segall, P., and DeMets, C. (2015).
+\newblock {Network-based estimation of time-dependent noise in GPS position
+  time series}.
+\newblock {\em Journal of Geodesy}, 89(6):591--606.
 
 \bibitem[Harville, 1974]{Harville1974}
 Harville, D.~A. (1974).
@@ -16,10 +28,12 @@ Harville, D.~A. (1974).
   Contrasts}.
 \newblock {\em Biometrika}, 61(2):383--385.
 
-\bibitem[King and Watson, 2010]{King2010}
-King, M.~A. and Watson, C.~S. (2010).
-\newblock {Long GPS coordinate time series: Multipath and geometry effects}.
-\newblock {\em Journal of Geophysical Research: Solid Earth}, 115(4):1--23.
+\bibitem[Hill et~al., 2009]{Hill2009}
+Hill, E.~M., Davis, J.~L., El{\'{o}}segui, P., Wernicke, B.~P., Malikowski, E.,
+  and Niemi, N.~A. (2009).
+\newblock {Characterization of site-specific GPS errors using a short-baseline
+  network of braced monuments at Yucca Mountain, southern Nevada}.
+\newblock {\em Journal of Geophysical Research: Solid Earth}, 114(11):1--13.
 
 \bibitem[King and Williams, 2009]{King2009}
 King, M.~A. and Williams, S. D.~P. (2009).
@@ -70,8 +84,7 @@ Patterson, H.~D. and Thompson, R. (1971).
 
 \bibitem[Press et~al., 2007]{Press2007}
 Press, W.~H., Flannery, B.~P., Teukolsky, S.~A., and Vetterling, W.~T. (2007).
-\newblock {\em {Numerical Recipes: The Art of Scientific Computing}},
-  volume~31.
+\newblock {\em {Numerical Recipes: The Art of Scientific Computing}}.
 \newblock Cambridge University Press, Cambridge, 3 edition.
 
 \bibitem[Wahba, 1985]{Wahba1985}
