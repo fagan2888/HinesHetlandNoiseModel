@@ -87,12 +87,6 @@ Press, W.~H., Flannery, B.~P., Teukolsky, S.~A., and Vetterling, W.~T. (2007).
 \newblock {\em {Numerical Recipes: The Art of Scientific Computing}}.
 \newblock Cambridge University Press, Cambridge, 3 edition.
 
-\bibitem[Wahba, 1985]{Wahba1985}
-Wahba, G. (1985).
-\newblock {A comparison of GCV and GML for choosing the smoothing parameter in
-  the generalized spline smoothing problem}.
-\newblock {\em Annals of Statistics}, 13(4):1378--1402.
-
 \bibitem[Williams et~al., 2004]{Williams2004}
 Williams, S. D.~P., Bock, Y., Fang, P., Jamason, P., Nikolaidis, R.~M.,
   Prawirodirdjo, L., Miller, M., and Johnson, D.~J. (2004).
