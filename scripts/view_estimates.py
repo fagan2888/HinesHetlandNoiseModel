@@ -28,9 +28,9 @@ ax.set_ylabel('$\mathrm{\sigma_{rw}}$ [mm/yr$\mathregular{^{0.5}}$]',fontsize=10
 
 ax.set_xlim((periods[0],periods[-1]))
 ax.set_ylim((0.0,3.5))
-ax.set_title('Maximum likelihood (ML)',fontsize=10)
+ax.set_title('Maximum likelihood estimation (MLE)',fontsize=10)
 ax.set_xticks([0.3,0.5,1.0,1.5,2.0,2.5])
-ax.set_xticklabels(['$\mathregular{f_o^{-1}}$','0.5','1.0','1.5','2.0','2.5'])
+ax.set_xticklabels(['$\mathregular{f_c^{-1}}$','0.5','1.0','1.5','2.0','2.5'])
 ax.grid(c='0.5',alpha=0.5)
 ax.legend(ncol=2)
 ###########################################################
@@ -63,9 +63,9 @@ ax.set_ylabel('$\mathrm{\sigma_{rw}}$ [mm/yr$\mathregular{^{0.5}}$]',fontsize=10
 ax.plot([periods[0],periods[-1]],[1.3,1.3],'k-',zorder=4)
 ax.set_xlim((periods[0],periods[-1]))
 ax.set_ylim((0.0,3.5))
-ax.set_title('Restricted maximum likelihood (REML)',fontsize=10)
+ax.set_title('Restricted maximum likelihood (REML) estimation',fontsize=10)
 ax.set_xticks([0.3,0.5,1.0,1.5,2.0,2.5])
-ax.set_xticklabels(['$\mathregular{f_o^{-1}}$','0.5','1.0','1.5','2.0','2.5'])
+ax.set_xticklabels(['$\mathregular{f_c^{-1}}$','0.5','1.0','1.5','2.0','2.5'])
 ax.grid(c='0.5',alpha=0.5)
 ###########################################################
 
