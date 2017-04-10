@@ -151,7 +151,7 @@ In this paper, we have used synthetic tests to demonstrate that the REML method 
 
 \section*{Appendix 1: REML algorithm}
 
-Algorithm 1 demonstrates how to efficiently compute the log of the REML likelihood function. For comparison, we include Algorithm 2, which evaluates the log of the MLE likelihood function. If we assume that $m \ll n$, then the main computational burden in both algorithms is computing the Cholesky decomposition of $\mathbf{\Sigma}$.  
+Algorithm 1 demonstrates how to efficiently compute the log of the REML likelihood function. For comparison, we include Algorithm 2, which evaluates the log of the MLE likelihood function. If we assume that $m \ll n$, then the main computational burden in both algorithms is computing the Cholesky decomposition of $\mathbf{\Sigma}$. Since we are just interested in finding the $\mathbf{\Sigma}$ that maximizes these functions, we can omit the terms in the log likelihood functions that are independent of $\mathbf{\Sigma}$. In that case, the only difference between the two algorithms will be that Algorithm 1 includes a summation along the diagonals of $\mathbf{C}$ in the log likelihood function.    
 
 
 
