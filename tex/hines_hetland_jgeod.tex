@@ -69,8 +69,8 @@ where $\mathbf{\epsilon}$ is the data noise vector, $\mathbf{G}$ is an $n \times
 The MLE method chooses $\mathbf{\theta}$ such that the probability of sampling the least squares residual vector,
 \begin{equation}
   \mathbf{r}_* =  \left(\mathbf{I} - 
-                  \mathbf{G}\left(\mathbf{G}^T\mathbf{\Sigma}^{-1}
-                  \mathbf{G}\right)^{-1}\mathbf{G}^T\mathbf{\Sigma}^{-1}\right)
+                  \mathbf{G}\left(\mathbf{G}^T\mathbf{\Sigma}(\mathbf{\theta})^{-1}
+                  \mathbf{G}\right)^{-1}\mathbf{G}^T\mathbf{\Sigma}(\mathbf{\theta})^{-1}\right)
                   \mathbf{d_*},
 \end{equation}  
 from $\mathbf{\epsilon}$ is maximized. To put it explicitly, The MLE method maximizes the probability density function
@@ -81,27 +81,27 @@ e^{-\tfrac{1}{2}\mathbf{d}_*^T\mathbf{K(\mathbf{\theta}})\mathbf{d}_*}
 \end{equation}
 with respect to $\mathbf{\theta}$, where
 \begin{equation}
-\mathbf{K} = \mathbf{\Sigma}(\mathbf{\theta})^{-1} - 
-             \mathbf{\Sigma}(\mathbf{\theta})^{-1}\mathbf{G}
-             \left(\mathbf{G}^T\mathbf{\Sigma}(\mathbf{\theta})^{-1}\mathbf{G}\right)^{-1}
-             \mathbf{G}^T\mathbf{\Sigma}(\mathbf{\theta})^{-1}.
+\mathbf{K}(\mathbf{\theta}) = \mathbf{\Sigma}(\mathbf{\theta})^{-1} - 
+                              \mathbf{\Sigma}(\mathbf{\theta})^{-1}\mathbf{G}
+                              \left(\mathbf{G}^T\mathbf{\Sigma}(\mathbf{\theta})^{-1}\mathbf{G}\right)^{-1}
+                              \mathbf{G}^T\mathbf{\Sigma}(\mathbf{\theta})^{-1}.
 \end{equation}
 Implementations of the MLE method typically maximize the logarithm of eq. (\ref{eq:mle}) with the downhill simplex method \citep{Press2007}. It is important to recognize that the MLE method assumes that $\mathbf{r}_*$ is a representative sample of $\mathbf{\epsilon}$. This assumption is only valid when $n$ is sufficiently large. To elaborate, we note that $\mathbf{r_*}$ is a sample of the random variable
 \begin{equation}
   \mathbf{r} =  \left(\mathbf{I} - 
-                \mathbf{G}\left(\mathbf{G}^T\mathbf{\Sigma}^{-1}\mathbf{G}\right)^{-1}
-                \mathbf{G}^T\mathbf{\Sigma}^{-1}\right)\mathbf{d},
+                \mathbf{G}\left(\mathbf{G}^T\mathbf{\Sigma}(\mathbf{\theta})^{-1}\mathbf{G}\right)^{-1}
+                \mathbf{G}^T\mathbf{\Sigma}(\mathbf{\theta})^{-1}\right)\mathbf{d},
 \end{equation}  
 which is distributed as
 \begin{equation}\label{eq:res}
   \mathbf{r} \sim \mathcal{N}\left(\mathbf{0},
-                  \mathbf{\Sigma} - 
-                  \mathbf{G}\left(\mathbf{G}^T\mathbf{\Sigma}^{-1}
+                  \mathbf{\Sigma}(\mathbf{\theta}) - 
+                  \mathbf{G}\left(\mathbf{G}^T\mathbf{\Sigma}(\mathbf{\theta})^{-1}
                   \mathbf{G}\right)^{-1}\mathbf{G}^T\right).
 \end{equation}
 The term being subtracted in eq. (\ref{eq:res}) is the covariance of the least squares prediction vector, which will typically get smaller as $n$ increases. The distribution of $\mathbf{r}$ will then tend towards that of $\mathbf{\epsilon}$ as $n$ increases. Hence, we can only assume that $\mathbf{r}_*$ is a representative sample of $\mathbf{\epsilon}$ when $n$ is sufficiently large. We can also observe from eq. (\ref{eq:res}) that the variance of $\mathbf{r}$ will always be less than the variance of $\mathbf{\epsilon}$. This is the reason why the MLE method is biased towards underestimating the noise in short time series.
 
-Having demonstrated that the MLE method is biased, we move on to discuss the REML method for selecting $\mathbf{\theta}$.  The REML method was introduced by \citet{Patterson1971}, and is now established in the Kriging community as an unbiased method for estimating covariance functions \citep[e.g.,][]{Cressie1992}. The REML method can be understood by first considering an $(n-m)\times n$ matrix $\mathbf{R}$ which satisfies $\mathbf{R}\mathbf{G}=\mathbf{0}$.  We then consider the random variable $\mathbf{x}=\mathbf{R}\mathbf{d}$, which can be interpreted as the projection of $\mathbf{d}$ onto a subspace that is orthogonal to the columns of $\mathbf{G}$. As opposed to $\mathbf{d}$, $\mathbf{x}$ is a proper random variable since it is independent of the prior on $\mathbf{m}$. The REML method chooses $\mathbf{\theta}$ such that the probability of drawing $\mathbf{x}_*=\mathbf{R}\mathbf{d}_*$ from $\mathbf{x}$, $p_\mathbf{x}(\mathbf{x}_*|\mathbf{\theta})$, is maximized. As noted by \citet{Harville1974}, the particular choice for $\mathbf{R}$ does not matter because it will only change the likelihood function which we are maximizing by a scale factor. Following \citet{Harville1974}, we let $\mathbf{R}$ have the properties $\mathbf{R}^T\mathbf{R} = \mathbf{I} - \mathbf{G}(\mathbf{G}^T\mathbf{G})^{-1}\mathbf{G}^T$ and $\mathbf{R}\mathbf{R}^T = \mathbf{I}$. The probability density function for $\mathbf{x}$ can then be written as 
+Having demonstrated that the MLE method is biased, we move on to discuss the REML method for selecting $\mathbf{\theta}$.  The REML method was introduced by \citet{Patterson1971}, and is now established in the Kriging community as an unbiased method for estimating covariance functions \citep[e.g.,][]{Cressie1992}. The REML method can be understood by first considering an $(n-m)\times n$ matrix $\mathbf{R}$ which satisfies $\mathbf{R}\mathbf{G}=\mathbf{0}$.  We then consider the random variable $\mathbf{x}=\mathbf{R}\mathbf{d}$, which is distributed as $\mathbf{x} \sim \mathcal{N}(\mathbf{0},\mathbf{R}\mathbf{\Sigma}(\mathbf{\theta})\mathbf{R}^T)$.  As opposed to $\mathbf{d}$, $\mathbf{x}$ is a proper random variable since it is independent of the prior on $\mathbf{m}$. The REML method chooses $\mathbf{\theta}$ such that the probability of drawing $\mathbf{x}_*=\mathbf{R}\mathbf{d}_*$ from $\mathbf{x}$, $p_\mathbf{x}(\mathbf{x}_*|\mathbf{\theta})$, is maximized. As noted by \citet{Harville1974}, the particular choice for $\mathbf{R}$ does not matter because it will only change the likelihood function which we are maximizing by a scale factor. Following \citet{Harville1974}, we let $\mathbf{R}$ have the properties $\mathbf{R}^T\mathbf{R} = \mathbf{I} - \mathbf{G}(\mathbf{G}^T\mathbf{G})^{-1}\mathbf{G}^T$ and $\mathbf{R}\mathbf{R}^T = \mathbf{I}$. The probability density function for $\mathbf{x}$ can then be written as 
 \begin{equation}\label{eq:reml}
 p_\mathbf{x}(\mathbf{x}_*|\mathbf{\theta}) =
 \left(\frac{\left|\mathbf{G}^T\mathbf{G}\right|}
