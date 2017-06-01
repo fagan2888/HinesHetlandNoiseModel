@@ -1,0 +1,108 @@
+\begin{thebibliography}{19}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{DOI~\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{DOI~\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem[{Agnew(1992)}]{Agnew1992}
+Agnew DC (1992) {The time-domain behavior of power-law noises}. Geophysical
+  Research Letters 19(4):333--336
+
+\bibitem[{Amiri-Simkooei et~al(2007)Amiri-Simkooei, Tiberius, and
+  Teunissen}]{Amiri-Simkooei2007}
+Amiri-Simkooei AR, Tiberius CCJM, Teunissen PJG (2007) {Assessment of noise in
+  GPS coordinate time series: Methodology and results}. Journal of Geophysical
+  Research: Solid Earth 112(7):1--19, \doi{10.1029/2006JB004913}
+
+\bibitem[{Cressie(1993)}]{Cressie1992}
+Cressie N (1993) {Statistics for Spatial Data}, rev. edn. John Wiley {\&} Sons,
+  New York, \doi{10.1111/j.1365-3121.1992.tb00605.x}
+
+\bibitem[{Dmitrieva et~al(2015)Dmitrieva, Segall, and DeMets}]{Dmitrieva2015}
+Dmitrieva K, Segall P, DeMets C (2015) {Network-based estimation of
+  time-dependent noise in GPS position time series}. Journal of Geodesy
+  89(6):591--606, \doi{10.1007/s00190-015-0801-9}
+
+\bibitem[{Harville(1974)}]{Harville1974}
+Harville DA (1974) {Bayesian Inference for Variance Components Using Only Error
+  Contrasts}. Biometrika 61(2):383--385
+
+\bibitem[{Hill et~al(2009)Hill, Davis, El{\'{o}}segui, Wernicke, Malikowski,
+  and Niemi}]{Hill2009}
+Hill EM, Davis JL, El{\'{o}}segui P, Wernicke BP, Malikowski E, Niemi NA (2009)
+  {Characterization of site-specific GPS errors using a short-baseline network
+  of braced monuments at Yucca Mountain, southern Nevada}. Journal of
+  Geophysical Research: Solid Earth 114(11):1--13, \doi{10.1029/2008JB006027}
+
+\bibitem[{King and Williams(2009)}]{King2009}
+King MA, Williams SDP (2009) {Apparent stability of GPS monumentation from
+  short-baseline time series}. Journal of Geophysical Research: Solid Earth
+  114(10):1--21, \doi{10.1029/2009JB006319}
+
+\bibitem[{Langbein(2004)}]{Langbein2004}
+Langbein J (2004) {Noise in two-color electronic distance meter measurements
+  revisited}. Journal of Geophysical Research: Solid Earth 109(4):1--16,
+  \doi{10.1029/2003JB002819}
+
+\bibitem[{Langbein(2008)}]{Langbein2008}
+Langbein J (2008) {Noise in GPS displacement measurements from Southern
+  California and Southern Nevada}. Journal of Geophysical Research: Solid Earth
+  113(5):1--12, \doi{10.1029/2007JB005247}
+
+\bibitem[{Langbein(2012)}]{Langbein2012}
+Langbein J (2012) {Estimating rate uncertainty with maximum likelihood:
+  Differences between power-law and flicker-random-walk models}. Journal of
+  Geodesy 86(9):775--783, \doi{10.1007/s00190-012-0556-5}
+
+\bibitem[{Langbein and Johnson(1997)}]{Langbein1997}
+Langbein J, Johnson H (1997) {Correlated errors in geodetic time series:
+  Implications for time-dependent deformation}. Journal of Geophysical Research
+  102(B1):591--603, \doi{10.1029/96JB02945}
+
+\bibitem[{Mao et~al(1999)Mao, Harrison, and Dixon}]{Mao1999}
+Mao A, Harrison GA, Dixon H (1999) {Noise in GPS coordinate time series}.
+  Journal of Geophysical Research 104(B2):2797--2816
+
+\bibitem[{Murray and Svarc(2017)}]{Murray2017}
+Murray JR, Svarc J (2017) {Global Positioning System Data Collection,
+  Processing, and Analysis Conducted by the U.S. Geological Survey Earthquake
+  Hazards Program}. Seismological Research Letters 88(3):1 -- 10,
+  \doi{10.1785/0220160204}
+
+\bibitem[{Patterson and Thompson(1971)}]{Patterson1971}
+Patterson HD, Thompson R (1971) {Recovery of Inter-Block Information when Block
+  Sizes are Unequal}. Biometrika 58(3):545--554
+
+\bibitem[{Press et~al(2007)Press, Flannery, Teukolsky, and
+  Vetterling}]{Press2007}
+Press WH, Flannery BP, Teukolsky SA, Vetterling WT (2007) {Numerical Recipes:
+  The Art of Scientific Computing}, 3rd edn. Cambridge University Press,
+  Cambridge, \doi{10.1137/1031025}
+
+\bibitem[{Williams et~al(2004)Williams, Bock, Fang, Jamason, Nikolaidis,
+  Prawirodirdjo, Miller, and Johnson}]{Williams2004}
+Williams SDP, Bock Y, Fang P, Jamason P, Nikolaidis RM, Prawirodirdjo L, Miller
+  M, Johnson DJ (2004) {Error analysis of continuous GPS position time series}.
+  Journal of Geophysical Research: Solid Earth 109(B3),
+  \doi{10.1029/2003JB002741}
+
+\bibitem[{Wyatt(1982)}]{Wyatt1982}
+Wyatt F (1982) {Displacement of Surface Monuments: Horizontal Motion}. Journal
+  of Geophysical Research 87(B2):979--989
+
+\bibitem[{Wyatt(1989)}]{Wyatt1989}
+Wyatt FK (1989) {Displacement of surface monuments: Vertical motion}. Journal
+  of Geophysical Research 94(B2):1655--1664
+
+\bibitem[{Zhang et~al(1997)Zhang, Bock, Johnson, Fang, Williams, Genrich,
+  Wdowinski, and Behr}]{Zhang1997}
+Zhang J, Bock Y, Johnson H, Fang P, Williams S, Genrich J, Wdowinski S, Behr J
+  (1997) {Southern California Permanent GPS Geodetic Array: Error analysis of
+  daily position estimates and site velocities}. Journal of Geophysical
+  Research 102(B8):18,035--18,055
+
+\end{thebibliography}
